@@ -1,3 +1,4 @@
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -11,6 +12,7 @@ body {
 }
 
 .container {
+    margin: 0 20px; /* Adiciona margem esquerda e direita de 20px */
     text-align: center;
 }
 
@@ -33,4 +35,30 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+.coelhinho-img {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.start-button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+.start-button:hover {
+    background-color: #45a049;
+}
+
+#respostaInput, #enviarResposta {
+    display: inline-block;
+    vertical-align: middle;
 }

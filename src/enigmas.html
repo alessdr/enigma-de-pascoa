@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brincadeira de Páscoa - Enigmas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vinda, <span id="nome"></span>!</h1>
+        <p>Este é o seu enigma de Páscoa. Abaixo serão listadas charadas que você precisará resolver para chegar ao grande prêmio.</p>
+        <p>Cada enigma te levará a um local onde existe uma senha de 3 dígitos escondida.</p>
+        <p>Você precisará informar a senha para passar para a próxima charada. Então, vamos lá e boa sorte!</p>
+        <button onclick="iniciarBrincadeira()">Começar</button>
+        <hr>
+        <p id="enigma" style="display: none;"></p>
+        <input type="text" id="respostaInput" style="display: none;">
+        <button id="enviarResposta" style="display: none;" onclick="verificarResposta()">Enviar</button>
+    </div>
+    <script src="js/enigmas.js"></script>
+</body>
+</html>

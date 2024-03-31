@@ -36,7 +36,6 @@ function verificarResposta() {
         alert("Resposta correta! Parabéns!");
         enigmaAtualIndex++;
         if (enigmaAtualIndex < enigmas.length) {
-            document.getElementById("respostaInput").value = "";
             apresentarEnigma();
             // Atualiza o armazenamento local com o novo índice do enigma atual
             localStorage.setItem('enigmaAtualIndex', enigmaAtualIndex);
@@ -48,6 +47,7 @@ function verificarResposta() {
     } else {
         alert("Resposta incorreta. Tente novamente.");
     }
+    document.getElementById("respostaInput").value = "";
 }
 
 function parabensUsuario() {

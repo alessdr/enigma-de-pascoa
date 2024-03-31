@@ -1,20 +1,31 @@
 var enigmas;
 var enigmaAtualIndex = 0;
 
+window.addEventListener("load", function() {
+    var params = new URLSearchParams(window.location.search);
+    var nome = params.get('nome');
+    document.getElementById("nome").textContent = nome;
+});
+
 function carregarEnigmas() {
     fetch('json/data.json')
     .then(response => response.json())
     .then(data => {
         enigmas = data;
-        apresentarEnigma();
+        verificarEstadoAnterior(); // Verifica se há um índice de enigma atual salvo no armazenamento local
+        apresentarEnigma(); // Apresenta o enigma correspondente
     });
 }
 
 function apresentarEnigma() {
-    document.getElementById("enigma").textContent = enigmas[enigmaAtualIndex].enigma;
-    document.getElementById("enigma").style.display = "block";
-    document.getElementById("respostaInput").style.display = "inline-block";
-    document.getElementById("enviarResposta").style.display = "inline-block";
+    if (enigmaAtualIndex < enigmas.length) {
+        document.getElementById("enigma").textContent = enigmas[enigmaAtualIndex].enigma;
+        document.getElementById("enigma").style.display = "block";
+        document.getElementById("respostaInput").style.display = "inline-block";
+        document.getElementById("enviarResposta").style.display = "inline-block";
+    } else {
+        parabensUsuario();
+    }
 }
 
 function verificarResposta() {
@@ -27,17 +38,29 @@ function verificarResposta() {
         if (enigmaAtualIndex < enigmas.length) {
             document.getElementById("respostaInput").value = "";
             apresentarEnigma();
+            // Atualiza o armazenamento local com o novo índice do enigma atual
+            localStorage.setItem('enigmaAtualIndex', enigmaAtualIndex);
         } else {
-            alert("Você é incrível. Seu tesouro poderá ser encontrado em " + enigmas[enigmas.length - 1].local);
+            parabensUsuario();
+            // Limpa o armazenamento local quando a brincadeira é concluída
+            localStorage.removeItem('enigmaAtualIndex');
         }
     } else {
         alert("Resposta incorreta. Tente novamente.");
     }
 }
 
+function parabensUsuario() {
+    window.open("parabens.html", "_self");
+}
+
+function verificarEstadoAnterior() {
+    var indiceSalvo = localStorage.getItem('enigmaAtualIndex');
+    if (indiceSalvo !== null) {
+        enigmaAtualIndex = parseInt(indiceSalvo);
+    }
+}
+
 function iniciarBrincadeira() {
-    var params = new URLSearchParams(window.location.search);
-    var nome = params.get('nome');
-    document.getElementById("nome").textContent = nome;
     carregarEnigmas();
 }
